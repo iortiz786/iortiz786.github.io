@@ -1,91 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Work — YOUR NAME</title>
-
-<style>
-body{
-margin:0;
-font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
-background:#05060a;
-color:#e8edf6;
-}
-a{color:inherit;text-decoration:none}
-.wrap{max-width:1100px;margin:0 auto;padding:48px 24px}
-nav{
-border-bottom:1px solid rgba(255,255,255,0.08);
-background:rgba(5,6,10,.7);
-backdrop-filter:blur(12px);
-}
-nav .wrap{display:flex;justify-content:space-between;align-items:center;padding:16px 24px}
-nav a{margin-left:14px;color:#a9b4c7;font-weight:600}
-nav a:hover{color:#fff}
-
-h1{font-size:2.5rem;margin-bottom:20px}
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-gap:20px;
-}
-.card{
-padding:22px;
-border-radius:18px;
-background:rgba(255,255,255,.05);
-border:1px solid rgba(255,255,255,.1);
-transition:.2s ease;
-}
-.card:hover{transform:translateY(-3px);background:rgba(255,255,255,.07)}
-.meta{color:#7b879c;font-weight:700;font-size:.9rem}
-p{color:#a9b4c7;line-height:1.6;margin:10px 0}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Work — YOUR NAME</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
-<nav>
-<div class="wrap">
-<strong>YOUR NAME</strong>
-<div>
-<a href="index.html">Home</a>
-<a href="about.html">About</a>
-<a href="work.html">Work</a>
-<a href="contact.html">Contact</a>
-</div>
-</div>
-</nav>
+  <div class="nav">
+    <div class="wrap nav-inner">
+      <div class="brand">
+        <div class="sig" aria-hidden="true"></div>
+        <div id="brandName">YOUR NAME</div>
+      </div>
+      <div class="navlinks">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="work.html">Work</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </div>
 
-<main class="wrap">
-<h1>Selected Work</h1>
+  <main>
+    <div class="wrap">
+      <h1>Work</h1>
+      <p>Keep it concrete. What you shipped, how, and impact. No adjectives needed.</p>
 
-<div class="grid">
-<div class="card">
-<div class="meta">2025 · Web</div>
-<h3>Project Alpha</h3>
-<p>
-Designed and shipped a high-performance static site with zero dependencies,
-optimized for speed and long-term ownership.
-</p>
-</div>
+      <div class="grid2" style="margin-top:16px;">
+        <div class="workitem">
+          <div class="worktop">
+            <div class="title">Project Alpha</div>
+            <div class="meta">2025 • Web</div>
+          </div>
+          <div class="desc">High-performance static site, clean UI, zero dependencies.</div>
+          <div class="links">
+            <a class="smalllink" href="#" target="_blank" rel="noopener">Live</a>
+            <a class="smalllink" href="#" target="_blank" rel="noopener">Repo</a>
+          </div>
+        </div>
 
-<div class="card">
-<div class="meta">2025 · Automation</div>
-<h3>Project Blackline</h3>
-<p>
-Automated reporting and analytics workflows, reducing manual effort and
-increasing reliability.
-</p>
-</div>
+        <div class="workitem">
+          <div class="worktop">
+            <div class="title">Project Blackline</div>
+            <div class="meta">2025 • Automation</div>
+          </div>
+          <div class="desc">Automated reporting workflows to reduce friction and increase reliability.</div>
+          <div class="links">
+            <a class="smalllink" href="#" target="_blank" rel="noopener">Writeup</a>
+            <a class="smalllink" href="#" target="_blank" rel="noopener">Code</a>
+          </div>
+        </div>
 
-<div class="card">
-<div class="meta">2024 · Systems</div>
-<h3>Project Nightshift</h3>
-<p>
-Built maintainable internal tools designed to scale cleanly and be handed
-off without friction.
-</p>
-</div>
-</div>
-</main>
+        <div class="workitem">
+          <div class="worktop">
+            <div class="title">Project Nightshift</div>
+            <div class="meta">2024 • Systems</div>
+          </div>
+          <div class="desc">Built maintainable internal tools designed to scale and be handed off cleanly.</div>
+          <div class="links">
+            <a class="smalllink" href="#" target="_blank" rel="noopener">Demo</a>
+          </div>
+        </div>
+
+        <div class="workitem">
+          <div class="worktop">
+            <div class="title">Project Rift</div>
+            <div class="meta">2024 • Brand</div>
+          </div>
+          <div class="desc">Commercial-grade landing page with crisp typography and conversion-first layout.</div>
+          <div class="links">
+            <a class="smalllink" href="#" target="_blank" rel="noopener">Live</a>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;">
+          <div>© <span id="year"></span> <span id="footerName">YOUR NAME</span>.</div>
+          <div><a class="smalllink" href="contact.html">Contact</a></div>
+        </div>
+      </footer>
+    </div>
+  </main>
+
+  <div class="toast" id="toast">Copied.</div>
+  <script src="script.js"></script>
 </body>
 </html>
