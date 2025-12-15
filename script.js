@@ -4,7 +4,7 @@ const PROFILE = {
   email: "youremail@example.com",
   github: "https://github.com/",
   linkedin: "https://www.linkedin.com/",
-  resumePath: "resume.pdf" // upload resume.pdf into repo root to enable
+  resumePath: "resume.pdf"
 };
 
 function $(sel){ return document.querySelector(sel); }
