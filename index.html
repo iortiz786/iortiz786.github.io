@@ -1,68 +1,670 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewpoint" content="width=device-width, initial-scale=1.0" />
-  <title>My Website</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Your Name — Dark Portfolio</title>
+<meta name="description" content="Dark, aggressive portfolio site hosted on GitHub Pages." />
 
-  <style>
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background: #0f172a;
-      color: #e5e7eb;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
+<style>
+:root{
+--bg0:#05060a;
+--bg1:#070a12;
+--panel: rgba(255,255,255,0.06);
+--panel2: rgba(255,255,255,0.04);
+--stroke: rgba(255,255,255,0.12);
+--text:#e8edf6;
+--muted:#a9b4c7;
+--muted2:#7b879c;
+--accent:#7c3aed; /* violet */
+--accent2:#22d3ee; /* cyan */
+--danger:#ef4444;
+--good:#22c55e;
+--shadow: 0 30px 80px rgba(0,0,0,0.55);
+--shadow2: 0 18px 50px rgba(0,0,0,0.45);
+--r: 18px;
+--r2: 26px;
+--max: 1100px;
+}
 
-    .card{
-      max-width: 700px;
-      padding: 48px;
-      background: #020617;
-      border-radius: 16px;
-      box-shadow: 0 25px rgba(0, 0, 0, 0.6);
-    }
+*{ box-sizing: border-box; }
+html{ scroll-behavior: smooth; }
+body{
+margin:0;
+font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+background: radial-gradient(1200px 700px at 20% -10%, rgba(124,58,237,0.35), transparent 60%),
+radial-gradient(1000px 600px at 90% 10%, rgba(34,211,238,0.22), transparent 60%),
+radial-gradient(900px 600px at 50% 100%, rgba(239,68,68,0.10), transparent 60%),
+linear-gradient(180deg, var(--bg0), var(--bg1));
+color: var(--text);
+overflow-x:hidden;
+}
 
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 12px;
-    }
+a{ color: inherit; text-decoration: none; }
+.wrap{ width: min(var(--max), calc(100% - 48px)); margin: 0 auto; }
 
-    p {
-      font-size: 1.1rem;
-      line-height: 1.6;
-      color: #cbd5f5;
-    }
+/* Top nav */
+.nav{
+position: sticky;
+top: 0;
+z-index: 50;
+backdrop-filter: blur(14px);
+background: rgba(5,6,10,0.55);
+border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.nav-inner{
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding: 14px 0;
+}
+.brand{
+display:flex;
+align-items:center;
+gap: 10px;
+letter-spacing: 0.4px;
+font-weight: 700;
+}
+.sig{
+width: 32px;
+height: 32px;
+border-radius: 10px;
+background:
+radial-gradient(12px 12px at 30% 35%, rgba(34,211,238,0.9), transparent 60%),
+radial-gradient(14px 14px at 70% 70%, rgba(124,58,237,0.9), transparent 60%),
+linear-gradient(135deg, rgba(255,255,255,0.14), rgba(255,255,255,0.06));
+border: 1px solid rgba(255,255,255,0.14);
+box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+}
+.navlinks{ display:flex; gap: 16px; align-items:center; }
+.navlinks a{
+padding: 10px 12px;
+border-radius: 12px;
+color: var(--muted);
+font-weight: 600;
+font-size: 0.95rem;
+transition: 160ms ease;
+}
+.navlinks a:hover{
+color: var(--text);
+background: rgba(255,255,255,0.06);
+transform: translateY(-1px);
+}
 
-    a {
-      display: inline-block;
-      margin-top: 24px;
-      padding: 12px 20px;
-      background: #28bdf8;
-      color: #020617;
-      border-radius: 10px;
-      text-decoration: none;
-      font-weight: 600;
-    }
+/* Hero */
+.hero{
+padding: 68px 0 36px;
+position: relative;
+}
+.hero-grid{
+display:grid;
+grid-template-columns: 1.4fr 0.9fr;
+gap: 26px;
+align-items: stretch;
+}
+@media (max-width: 920px){
+.hero-grid{ grid-template-columns: 1fr; }
+}
 
-    a:hover {
-      background: #0ea5e9;
-    }
-  </style>
+.badge{
+display:inline-flex;
+gap:10px;
+align-items:center;
+padding: 10px 12px;
+border-radius: 999px;
+background: rgba(255,255,255,0.06);
+border: 1px solid rgba(255,255,255,0.10);
+color: var(--muted);
+font-weight: 700;
+font-size: 0.9rem;
+letter-spacing: 0.2px;
+}
+.dot{
+width: 9px; height: 9px; border-radius: 50%;
+background: linear-gradient(135deg, var(--accent2), var(--accent));
+box-shadow: 0 0 0 6px rgba(124,58,237,0.12);
+}
+
+h1{
+margin: 16px 0 10px;
+font-size: clamp(2.2rem, 3.7vw, 3.4rem);
+line-height: 1.05;
+letter-spacing: -0.03em;
+}
+.sub{
+margin: 0 0 22px;
+color: var(--muted);
+font-size: 1.08rem;
+line-height: 1.6;
+max-width: 62ch;
+}
+
+.cta-row{
+display:flex;
+flex-wrap: wrap;
+gap: 12px;
+align-items:center;
+margin-top: 16px;
+}
+
+.btn{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+gap:10px;
+padding: 12px 14px;
+border-radius: 14px;
+border: 1px solid rgba(255,255,255,0.12);
+background: rgba(255,255,255,0.06);
+color: var(--text);
+font-weight: 750;
+transition: 180ms ease;
+user-select:none;
+}
+.btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,0.085); }
+.btn.primary{
+border: 1px solid rgba(124,58,237,0.40);
+background: linear-gradient(135deg, rgba(124,58,237,0.85), rgba(34,211,238,0.50));
+box-shadow: 0 14px 40px rgba(124,58,237,0.25);
+}
+.btn.primary:hover{ filter: brightness(1.05); }
+.btn.ghost{ background: transparent; }
+.btn.danger{
+border: 1px solid rgba(239,68,68,0.40);
+background: rgba(239,68,68,0.10);
+}
+
+.panel{
+border-radius: var(--r2);
+background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.04));
+border: 1px solid rgba(255,255,255,0.12);
+box-shadow: var(--shadow2);
+overflow:hidden;
+}
+.panel-inner{ padding: 20px; }
+
+.statgrid{
+display:grid;
+grid-template-columns: 1fr 1fr;
+gap: 12px;
+margin-top: 10px;
+}
+.stat{
+padding: 14px;
+border-radius: 16px;
+background: rgba(0,0,0,0.22);
+border: 1px solid rgba(255,255,255,0.08);
+}
+.stat .k{ color: var(--muted2); font-weight:700; font-size:0.86rem; letter-spacing:0.2px;}
+.stat .v{ margin-top:8px; font-size:1.05rem; font-weight:800; }
+
+.divider{ height: 1px; background: rgba(255,255,255,0.10); margin: 26px 0; }
+
+/* Sections */
+section{ padding: 26px 0; }
+.section-title{
+display:flex;
+align-items:flex-end;
+justify-content:space-between;
+gap: 18px;
+margin-bottom: 14px;
+}
+h2{
+margin:0;
+font-size: 1.45rem;
+letter-spacing: -0.02em;
+}
+.hint{ margin:0; color: var(--muted2); font-weight:650; }
+
+.cards{
+display:grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 14px;
+}
+@media (max-width: 980px){ .cards{ grid-template-columns: 1fr 1fr; } }
+@media (max-width: 640px){ .cards{ grid-template-columns: 1fr; } }
+
+.card{
+border-radius: var(--r);
+background: rgba(255,255,255,0.05);
+border: 1px solid rgba(255,255,255,0.10);
+padding: 18px;
+transition: 180ms ease;
+position: relative;
+overflow:hidden;
+}
+.card:hover{
+transform: translateY(-3px);
+border-color: rgba(255,255,255,0.16);
+background: rgba(255,255,255,0.06);
+}
+.card::after{
+content:"";
+position:absolute;
+inset:-60px -80px auto auto;
+width: 190px; height: 190px;
+background: radial-gradient(circle at 30% 30%, rgba(34,211,238,0.26), transparent 60%),
+radial-gradient(circle at 70% 70%, rgba(124,58,237,0.26), transparent 60%);
+transform: rotate(10deg);
+pointer-events:none;
+}
+.card h3{ margin: 0 0 8px; font-size: 1.06rem; letter-spacing:-0.01em; }
+.card p{ margin:0; color: var(--muted); line-height:1.55; }
+.pillrow{ margin-top: 12px; display:flex; flex-wrap:wrap; gap:8px; }
+.pill{
+font-size: 0.82rem;
+padding: 7px 10px;
+border-radius: 999px;
+background: rgba(0,0,0,0.26);
+border: 1px solid rgba(255,255,255,0.10);
+color: var(--muted);
+font-weight: 700;
+}
+
+/* Work list */
+.work{
+display:grid;
+grid-template-columns: 1fr 1fr;
+gap: 14px;
+}
+@media (max-width: 900px){ .work{ grid-template-columns: 1fr; } }
+.workitem{
+border-radius: var(--r);
+background: rgba(255,255,255,0.045);
+border: 1px solid rgba(255,255,255,0.10);
+padding: 18px;
+transition: 180ms ease;
+}
+.workitem:hover{ transform: translateY(-2px); background: rgba(255,255,255,0.06); }
+.worktop{ display:flex; justify-content:space-between; align-items:flex-start; gap: 12px; }
+.workitem .title{ font-weight: 900; letter-spacing: -0.01em; }
+.workitem .meta{ color: var(--muted2); font-weight: 700; font-size: 0.9rem; }
+.workitem .desc{ margin-top: 10px; color: var(--muted); line-height: 1.55; }
+.workitem .links{ margin-top: 12px; display:flex; flex-wrap:wrap; gap:10px; }
+.smalllink{
+padding: 9px 10px;
+border-radius: 12px;
+background: rgba(0,0,0,0.20);
+border: 1px solid rgba(255,255,255,0.10);
+color: var(--text);
+font-weight: 750;
+transition: 160ms ease;
+}
+.smalllink:hover{ transform: translateY(-1px); background: rgba(0,0,0,0.28); }
+
+/* Footer */
+footer{
+padding: 40px 0 60px;
+color: var(--muted2);
+}
+
+/* Toast */
+.toast{
+position: fixed;
+bottom: 18px;
+left: 50%;
+transform: translateX(-50%) translateY(20px);
+opacity: 0;
+pointer-events:none;
+background: rgba(0,0,0,0.55);
+border: 1px solid rgba(255,255,255,0.14);
+color: var(--text);
+padding: 12px 14px;
+border-radius: 14px;
+backdrop-filter: blur(14px);
+box-shadow: var(--shadow2);
+transition: 220ms ease;
+font-weight: 750;
+}
+.toast.show{
+opacity: 1;
+transform: translateX(-50%) translateY(0);
+}
+
+/* Subtle entrance animation */
+.fadein{
+opacity: 0;
+transform: translateY(10px);
+animation: in 700ms ease forwards;
+}
+.d1{ animation-delay: 80ms; }
+.d2{ animation-delay: 160ms; }
+.d3{ animation-delay: 240ms; }
+.d4{ animation-delay: 320ms; }
+@keyframes in{
+to{ opacity: 1; transform: translateY(0); }
+}
+</style>
 </head>
+
 <body>
-  <div class="card">
-    <h1>Hello </h1>
-    <p>
-      This site is hosted on GitHub Pages.
-      The HTML, CSS, and JavaScript were written by Isaac.
-    </p>
-    <p>
-      Edit <strong>index.html</strong> to change anything you see here.
-    </p>
-    <a href="https://github.com">View my GitHub</a>
-  </div>
+<!-- NAV -->
+<div class="nav">
+<div class="wrap nav-inner">
+<div class="brand">
+<div class="sig" aria-hidden="true"></div>
+<div>YOUR NAME</div>
+</div>
+<div class="navlinks">
+<a href="#about">About</a>
+<a href="#proof">Proof</a>
+<a href="#work">Work</a>
+<a href="#contact">Contact</a>
+</div>
+</div>
+</div>
+
+<!-- HERO -->
+<header class="hero">
+<div class="wrap hero-grid">
+<div class="fadein d1">
+<div class="badge"><span class="dot"></span> Operate fast. Ship clean. No noise.</div>
+<h1>High-signal work.<br/>Dark aesthetic.<br/>Zero fluff.</h1>
+<p class="sub">
+I build sharp, modern web experiences and deliver results with executive-level clarity.
+If you want something that looks expensive and feels inevitable, you’re in the right place.
+</p>
+
+<div class="cta-row">
+<a class="btn primary" href="#work">See work</a>
+<a class="btn" href="#contact">Contact</a>
+<a class="btn ghost" id="resumeLink" href="#" title="Upload resume.pdf to this repo and link it here">Download résumé</a>
+</div>
+
+<div class="divider"></div>
+
+<div class="cta-row">
+<a class="btn" id="copyEmail" href="javascript:void(0)">Copy email</a>
+<a class="btn danger" href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
+<a class="btn" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+</div>
+</div>
+
+<div class="panel fadein d2">
+<div class="panel-inner">
+<div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px;">
+<div>
+<div style="color:var(--muted2); font-weight:800; letter-spacing:0.2px;">STATUS</div>
+<div style="margin-top:8px; font-size:1.25rem; font-weight:950;">Available for high-impact work</div>
+</div>
+<div class="pill" style="border-color: rgba(34,211,238,0.25);">Remote / Hybrid</div>
+</div>
+
+<div class="statgrid">
+<div class="stat">
+<div class="k">Focus</div>
+<div class="v">Web + Analytics + Automation</div>
+</div>
+<div class="stat">
+<div class="k">Style</div>
+<div class="v">Aggressive minimalism</div>
+</div>
+<div class="stat">
+<div class="k">Execution</div>
+<div class="v">Fast iterations</div>
+</div>
+<div class="stat">
+<div class="k">Standard</div>
+<div class="v">Clean + shippable</div>
+</div>
+</div>
+
+<div class="divider"></div>
+
+<div style="color:var(--muted); line-height:1.6;">
+<strong style="color:var(--text);">One rule:</strong>
+no bloated templates, no “startup pastel,” no fake friendliness.
+The site should feel like a weapon.
+</div>
+</div>
+</div>
+</div>
+</header>
+
+<!-- ABOUT -->
+<section id="about">
+<div class="wrap">
+<div class="section-title">
+<h2>About</h2>
+<p class="hint">Short. Sharp. True.</p>
+</div>
+
+<div class="cards">
+<div class="card fadein d1">
+<h3>What I do</h3>
+<p>Build modern websites that load fast, look expensive, and convert. Clean structure, crisp typography, tight interactions.</p>
+<div class="pillrow">
+<span class="pill">HTML/CSS/JS</span><span class="pill">GitHub Pages</span><span class="pill">Brand polish</span>
+</div>
+</div>
+
+<div class="card fadein d2">
+<h3>How I work</h3>
+<p>High bandwidth. Low drama. I ship in loops: draft → refine → harden → publish. You’ll never wonder what’s happening.</p>
+<div class="pillrow">
+<span class="pill">Iterate fast</span><span class="pill">No fluff</span><span class="pill">Production-ready</span>
+</div>
+</div>
+
+<div class="card fadein d3">
+<h3>What you get</h3>
+<p>A site you can own forever: no platform lock-in, no monthly fee, and easy to extend with more pages or a custom domain.</p>
+<div class="pillrow">
+<span class="pill">Own your code</span><span class="pill">Free hosting</span><span class="pill">Custom domain-ready</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- PROOF -->
+<section id="proof">
+<div class="wrap">
+<div class="section-title">
+<h2>Proof</h2>
+<p class="hint">Replace these with your real stats.</p>
+</div>
+
+<div class="cards">
+<div class="card">
+<h3>Result #1</h3>
+<p>Example: Automated reporting pipeline, cut turnaround from days to minutes.</p>
+<div class="pillrow"><span class="pill">Automation</span><span class="pill">Reliability</span></div>
+</div>
+<div class="card">
+<h3>Result #2</h3>
+<p>Example: Delivered executive-ready dashboards with repeatable metrics and clarity.</p>
+<div class="pillrow"><span class="pill">Clarity</span><span class="pill">Leadership</span></div>
+</div>
+<div class="card">
+<h3>Result #3</h3>
+<p>Example: Built systems that scale: stable, understandable, and easy to hand off.</p>
+<div class="pillrow"><span class="pill">Scale</span><span class="pill">Maintainable</span></div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- WORK -->
+<section id="work">
+<div class="wrap">
+<div class="section-title">
+<h2>Work</h2>
+<p class="hint">Add links when you have them.</p>
+</div>
+
+<div class="work">
+<div class="workitem">
+<div class="worktop">
+<div class="title">Project Alpha</div>
+<div class="meta">2025 • Web</div>
+</div>
+<div class="desc">
+Short description. What problem it solved, and why it mattered. Keep it concrete.
+</div>
+<div class="links">
+<a class="smalllink" href="#" target="_blank" rel="noopener">Live</a>
+<a class="smalllink" href="#" target="_blank" rel="noopener">Repo</a>
+</div>
+</div>
+
+<div class="workitem">
+<div class="worktop">
+<div class="title">Project Blackline</div>
+<div class="meta">2025 • Analytics</div>
+</div>
+<div class="desc">
+Short description. “What I built,” “how,” and “impact.” One paragraph max.
+</div>
+<div class="links">
+<a class="smalllink" href="#" target="_blank" rel="noopener">Case study</a>
+<a class="smalllink" href="#" target="_blank" rel="noopener">Code</a>
+</div>
+</div>
+
+<div class="workitem">
+<div class="worktop">
+<div class="title">Project Nightshift</div>
+<div class="meta">2024 • Automation</div>
+</div>
+<div class="desc">
+Short description. This is where you show you can ship and maintain.
+</div>
+<div class="links">
+<a class="smalllink" href="#" target="_blank" rel="noopener">Writeup</a>
+<a class="smalllink" href="#" target="_blank" rel="noopener">Demo</a>
+</div>
+</div>
+
+<div class="workitem">
+<div class="worktop">
+<div class="title">Project Rift</div>
+<div class="meta">2024 • Brand</div>
+</div>
+<div class="desc">
+Short description. If you want clients, include one “clean commercial” example.
+</div>
+<div class="links">
+<a class="smalllink" href="#" target="_blank" rel="noopener">Live</a>
+<a class="smalllink" href="#" target="_blank" rel="noopener">Deck</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+<div class="wrap">
+<div class="section-title">
+<h2>Contact</h2>
+<p class="hint">Make it easy to say yes.</p>
+</div>
+
+<div class="panel">
+<div class="panel-inner">
+<p style="margin:0; color:var(--muted); line-height:1.7;">
+If you’re hiring or you want a site that looks like it belongs in the penthouse of the internet, email me.
+</p>
+
+<div class="cta-row" style="margin-top:16px;">
+<a class="btn primary" id="emailMe" href="mailto:youremail@example.com">Email me</a>
+<a class="btn" id="copyEmail2" href="javascript:void(0)">Copy email</a>
+<a class="btn ghost" href="#top" onclick="window.scrollTo({top:0, behavior:'smooth'}); return false;">Back to top</a>
+</div>
+
+<div style="margin-top:14px; color:var(--muted2); font-weight:700;">
+Email: <span id="emailText">youremail@example.com</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<footer>
+<div class="wrap">
+<div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;">
+<div>© <span id="year"></span> YOUR NAME. Built on GitHub Pages.</div>
+<div style="color:rgba(255,255,255,0.35); font-weight:700;">Dark. Clean. Finished.</div>
+</div>
+</div>
+</footer>
+
+<div class="toast" id="toast">Copied.</div>
+
+<script>
+// ======= CUSTOMIZE THESE =======
+const PROFILE = {
+name: "YOUR NAME",
+email: "youremail@example.com",
+github: "https://github.com/",
+linkedin: "https://www.linkedin.com/",
+resumePath: "resume.pdf" // upload resume.pdf into repo root to enable
+};
+
+// ======= APPLY PROFILE =======
+document.title = PROFILE.name + " — Dark Portfolio";
+document.querySelectorAll(".brand div:last-child").forEach(el => el.textContent = PROFILE.name);
+document.querySelector("h1").innerHTML = "High-signal work.<br/>Dark aesthetic.<br/>Zero fluff.";
+document.getElementById("emailText").textContent = PROFILE.email;
+
+const emailMe = document.getElementById("emailMe");
+emailMe.href = "mailto:" + PROFILE.email;
+
+const resumeLink = document.getElementById("resumeLink");
+resumeLink.href = PROFILE.resumePath;
+resumeLink.addEventListener("click", (e) => {
+// If you haven't uploaded resume yet, stop dead and show a toast.
+if (!PROFILE.resumePath || PROFILE.resumePath === "#") return;
+});
+
+// Swap links (optional)
+const ghBtn = document.querySelector('a.btn.danger');
+ghBtn.href = PROFILE.github;
+
+const liBtn = Array.from(document.querySelectorAll('a.btn')).find(a => a.textContent.trim() === "LinkedIn");
+if (liBtn) liBtn.href = PROFILE.linkedin;
+
+// ======= COPY EMAIL + TOAST =======
+const toast = document.getElementById("toast");
+let toastTimer = null;
+
+function showToast(msg){
+toast.textContent = msg || "Copied.";
+toast.classList.add("show");
+clearTimeout(toastTimer);
+toastTimer = setTimeout(() => toast.classList.remove("show"), 1400);
+}
+
+async function copy(text){
+try{
+await navigator.clipboard.writeText(text);
+showToast("Email copied.");
+}catch(err){
+// fallback
+const t = document.createElement("textarea");
+t.value = text;
+document.body.appendChild(t);
+t.select();
+document.execCommand("copy");
+document.body.removeChild(t);
+showToast("Email copied.");
+}
+}
+
+document.getElementById("copyEmail").addEventListener("click", () => copy(PROFILE.email));
+document.getElementById("copyEmail2").addEventListener("click", () => copy(PROFILE.email));
+
+// ======= YEAR =======
+document.getElementById("year").textContent = new Date().getFullYear();
+
+// ======= OPTIONAL: prevent dead links from doing nothing silently =======
+document.querySelectorAll('a[href="#"]').forEach(a => {
+a.addEventListener("click", (e) => {
+e.preventDefault();
+showToast("Link not set yet.");
+});
+});
+</script>
 </body>
 </html>
