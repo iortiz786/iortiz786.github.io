@@ -1,89 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>About — YOUR NAME</title>
-
-<style>
-body{
-margin:0;
-font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-background: #05060a;
-color:#e8edf6;
-}
-a{color:inherit;text-decoration:none}
-.wrap{max-width:1000px;margin:0 auto;padding:48px 24px}
-nav{
-border-bottom:1px solid rgba(255,255,255,0.08);
-background:rgba(5,6,10,.7);
-backdrop-filter:blur(12px);
-}
-nav .wrap{
-display:flex;justify-content:space-between;align-items:center;padding:16px 24px
-}
-nav a{margin-left:14px;color:#a9b4c7;font-weight:600}
-nav a:hover{color:#fff}
-
-h1{font-size:2.6rem;margin:24px 0 12px}
-p{color:#a9b4c7;line-height:1.7;font-size:1.05rem;max-width:70ch}
-
-.panel{
-margin-top:32px;
-padding:28px;
-border-radius:18px;
-background:rgba(255,255,255,.05);
-border:1px solid rgba(255,255,255,.1);
-}
-.pill{
-display:inline-block;
-padding:8px 12px;
-margin:6px 6px 0 0;
-border-radius:999px;
-font-size:.85rem;
-background:rgba(0,0,0,.25);
-border:1px solid rgba(255,255,255,.12);
-color:#a9b4c7;
-font-weight:700;
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — YOUR NAME</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
-<nav>
-<div class="wrap">
-<strong>YOUR NAME</strong>
-<div>
-<a href="index.html">Home</a>
-<a href="about.html">About</a>
-<a href="work.html">Work</a>
-<a href="contact.html">Contact</a>
-</div>
-</div>
-</nav>
+  <div class="nav">
+    <div class="wrap nav-inner">
+      <div class="brand">
+        <div class="sig" aria-hidden="true"></div>
+        <div id="brandName">YOUR NAME</div>
+      </div>
+      <div class="navlinks">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="work.html">Work</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </div>
 
-<main class="wrap">
-<h1>About</h1>
-<p>
-I build modern, high-signal web experiences with an emphasis on clarity,
-ownership, and execution. No platforms. No subscriptions. Just clean code
-that ships.
-</p>
+  <main>
+    <div class="wrap">
+      <h1>About</h1>
+      <p>
+        I build modern, high-signal web experiences with an emphasis on clarity,
+        ownership, and execution. No platforms. No subscriptions. Just clean code that ships.
+      </p>
 
-<div class="panel">
-<p>
-My work favors aggressive minimalism: fast load times, intentional typography,
-restrained motion, and layouts that feel expensive without trying to impress.
-</p>
+      <div class="panel" style="margin-top:18px;">
+        <div class="panel-inner">
+          <h2 style="margin-bottom:6px;">Operating principles</h2>
+          <p style="margin-top:0;">
+            Aggressive minimalism: fast load times, intentional typography, restrained motion,
+            and layouts that feel expensive without trying to impress.
+          </p>
 
-<div>
-<span class="pill">HTML / CSS / JS</span>
-<span class="pill">GitHub Pages</span>
-<span class="pill">Automation</span>
-<span class="pill">Analytics</span>
-<span class="pill">Executive-ready output</span>
-</div>
-</div>
-</main>
+          <div class="pillrow">
+            <span class="pill">Speed</span>
+            <span class="pill">Clarity</span>
+            <span class="pill">Ownership</span>
+            <span class="pill">Execution</span>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;">
+          <div>© <span id="year"></span> <span id="footerName">YOUR NAME</span>.</div>
+          <div><a class="smalllink" href="contact.html">Contact</a></div>
+        </div>
+      </footer>
+    </div>
+  </main>
+
+  <div class="toast" id="toast">Copied.</div>
+  <script src="script.js"></script>
 </body>
 </html>
