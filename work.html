@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Work — YOUR NAME</title>
+
+<style>
+body{
+margin:0;
+font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+background:#05060a;
+color:#e8edf6;
+}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1100px;margin:0 auto;padding:48px 24px}
+nav{
+border-bottom:1px solid rgba(255,255,255,0.08);
+background:rgba(5,6,10,.7);
+backdrop-filter:blur(12px);
+}
+nav .wrap{display:flex;justify-content:space-between;align-items:center;padding:16px 24px}
+nav a{margin-left:14px;color:#a9b4c7;font-weight:600}
+nav a:hover{color:#fff}
+
+h1{font-size:2.5rem;margin-bottom:20px}
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+gap:20px;
+}
+.card{
+padding:22px;
+border-radius:18px;
+background:rgba(255,255,255,.05);
+border:1px solid rgba(255,255,255,.1);
+transition:.2s ease;
+}
+.card:hover{transform:translateY(-3px);background:rgba(255,255,255,.07)}
+.meta{color:#7b879c;font-weight:700;font-size:.9rem}
+p{color:#a9b4c7;line-height:1.6;margin:10px 0}
+</style>
+</head>
+
+<body>
+<nav>
+<div class="wrap">
+<strong>YOUR NAME</strong>
+<div>
+<a href="index.html">Home</a>
+<a href="about.html">About</a>
+<a href="work.html">Work</a>
+<a href="contact.html">Contact</a>
+</div>
+</div>
+</nav>
+
+<main class="wrap">
+<h1>Selected Work</h1>
+
+<div class="grid">
+<div class="card">
+<div class="meta">2025 · Web</div>
+<h3>Project Alpha</h3>
+<p>
+Designed and shipped a high-performance static site with zero dependencies,
+optimized for speed and long-term ownership.
+</p>
+</div>
+
+<div class="card">
+<div class="meta">2025 · Automation</div>
+<h3>Project Blackline</h3>
+<p>
+Automated reporting and analytics workflows, reducing manual effort and
+increasing reliability.
+</p>
+</div>
+
+<div class="card">
+<div class="meta">2024 · Systems</div>
+<h3>Project Nightshift</h3>
+<p>
+Built maintainable internal tools designed to scale cleanly and be handed
+off without friction.
+</p>
+</div>
+</div>
+</main>
+</body>
+</html>
