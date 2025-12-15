@@ -1,74 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Contact — YOUR NAME</title>
-
-<style>
-body{
-margin:0;
-font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
-background:#05060a;
-color:#e8edf6;
-}
-a{color:inherit;text-decoration:none}
-.wrap{max-width:900px;margin:0 auto;padding:48px 24px}
-nav{
-border-bottom:1px solid rgba(255,255,255,0.08);
-background:rgba(5,6,10,.7);
-backdrop-filter:blur(12px);
-}
-nav .wrap{display:flex;justify-content:space-between;align-items:center;padding:16px 24px}
-nav a{margin-left:14px;color:#a9b4c7;font-weight:600}
-nav a:hover{color:#fff}
-
-h1{font-size:2.4rem;margin-bottom:16px}
-p{color:#a9b4c7;line-height:1.7;font-size:1.05rem}
-
-.panel{
-margin-top:28px;
-padding:26px;
-border-radius:18px;
-background:rgba(255,255,255,.05);
-border:1px solid rgba(255,255,255,.1);
-}
-.btn{
-display:inline-block;
-margin-top:16px;
-padding:14px 20px;
-border-radius:14px;
-font-weight:800;
-background:linear-gradient(135deg,#7c3aed,#22d3ee);
-color:#05060a;
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — YOUR NAME</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
-<nav>
-<div class="wrap">
-<strong>YOUR NAME</strong>
-<div>
-<a href="index.html">Home</a>
-<a href="about.html">About</a>
-<a href="work.html">Work</a>
-<a href="contact.html">Contact</a>
-</div>
-</div>
-</nav>
+  <div class="nav">
+    <div class="wrap nav-inner">
+      <div class="brand">
+        <div class="sig" aria-hidden="true"></div>
+        <div id="brandName">YOUR NAME</div>
+      </div>
+      <div class="navlinks">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="work.html">Work</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </div>
 
-<main class="wrap">
-<h1>Contact</h1>
-<p>
-If you want clean execution, clear communication, and something that actually ships,
-email me.
-</p>
+  <main>
+    <div class="wrap">
+      <h1>Contact</h1>
+      <p>If you want clean execution and something that actually ships, email me.</p>
 
-<div class="panel">
-<p><strong>Email:</strong> youremail@example.com</p>
-<a class="btn" href="mailto:youremail@example.com">Email me</a>
-</div>
-</main>
+      <div class="panel" style="margin-top:18px;">
+        <div class="panel-inner">
+          <div style="font-weight:900; letter-spacing:-0.01em;">Email</div>
+          <div style="margin-top:6px; color:var(--muted); font-weight:800;" id="emailText">youremail@example.com</div>
+
+          <div class="cta-row">
+            <a class="btn primary" data-mailto="1" href="mailto:youremail@example.com">Email me</a>
+            <a class="btn" data-copy-email="1" href="javascript:void(0)">Copy email</a>
+            <a class="btn" id="resumeLink" href="#">Download résumé</a>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;">
+          <div>© <span id="year"></span> <span id="footerName">YOUR NAME</span>.</div>
+          <div><a class="smalllink" href="work.html">Work</a></div>
+        </div>
+      </footer>
+    </div>
+  </main>
+
+  <div class="toast" id="toast">Copied.</div>
+  <script src="script.js"></script>
 </body>
 </html>
