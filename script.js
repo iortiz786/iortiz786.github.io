@@ -196,7 +196,7 @@ function initModal(){
 }
 
 /* ===== Work page: tap-to-open modal + optional carousel wiring ===== */
-function initProjects(){
+/*function initProjects(){
   // Works if you add data-* attributes to items (below)
   $all("[data-project]").forEach(el => {
     el.addEventListener("click", () => {
@@ -211,13 +211,12 @@ function initProjects(){
     });
   });
 }
-
+*/
 document.addEventListener("DOMContentLoaded", () => {
   wireProfile();
   setActiveNav();
   initSheet();
   initModal();
-  initProjects();
 
   // prevent dead "#"
   $all('a[href="#"]').forEach(a => {
