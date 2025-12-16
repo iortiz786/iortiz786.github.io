@@ -21,7 +21,7 @@ function showToast(msg){
 async function copyToClipboard(text){
   try{
     await navigator.clipboard.writeText(text);
-    showToast("Email copied.");
+    showToast("Copied.");
   }catch(e){
     const ta = document.createElement("textarea");
     ta.value = text;
@@ -29,7 +29,7 @@ async function copyToClipboard(text){
     ta.select();
     document.execCommand("copy");
     document.body.removeChild(ta);
-    showToast("Email copied.");
+    showToast("Copied.");
   }
 }
 
@@ -59,9 +59,14 @@ function wireProfile(){
   const gh = $("#ghLink"); if (gh) gh.href = PROFILE.github;
   const li = $("#liLink"); if (li) li.href = PROFILE.linkedin;
 
-  // Resume
-  const res = $("#resumeLink");
-  if (res){
+  // Resume links (supports old + new IDs)
+  const resumeEls = [
+    $("#resumeLink"),
+    $("#resumeLinkTop"),
+    $("#resumeLinkSheet")
+  ].filter(Boolean);
+
+  resumeEls.forEach(res => {
     res.href = PROFILE.resumePath || "#";
     res.addEventListener("click", (e) => {
       if (!PROFILE.resumePath || PROFILE.resumePath === "#"){
@@ -69,7 +74,7 @@ function wireProfile(){
         showToast("Upload resume.pdf first.");
       }
     });
-  }
+  });
 
   // Copy email buttons
   $all('[data-copy-email="1"]').forEach(btn => {
@@ -86,19 +91,37 @@ function initSheet(){
   const fab = $("#fab");
   const sheet = $("#sheet");
   const backdrop = $("#sheetBackdrop");
-  if (!fab || !sheet || !backdrop) return;
+
+  if (!fab || !sheet || !backdrop){
+    // Make it obvious if one of these is missing
+    console.log("Bottom sheet missing:", { fab, sheet, backdrop });
+    // If toast exists, show it once
+    setTimeout(() => showToast("Menu wiring missing on this page."), 200);
+    return;
+  }
 
   const open = () => {
     backdrop.classList.add("show");
     sheet.classList.add("show");
+
+    // Hard fallback: if CSS is missing, force visible
+    backdrop.style.opacity = "1";
+    backdrop.style.pointerEvents = "auto";
+    sheet.style.transform = "translateX(-50%) translateY(0)";
   };
+
   const close = () => {
     backdrop.classList.remove("show");
     sheet.classList.remove("show");
+
+    // Remove fallback overrides (let CSS control it)
+    backdrop.style.opacity = "";
+    backdrop.style.pointerEvents = "";
+    sheet.style.transform = "";
   };
 
-  fab.addEventListener("click", open);
-  backdrop.addEventListener("click", close);
+  fab.addEventListener("click", open, { passive: true });
+  backdrop.addEventListener("click", close, { passive: true });
 
   // swipe-down to close
   let startY = null;
@@ -121,10 +144,11 @@ function initSheet(){
 
   sheet.addEventListener("touchend", () => {
     sheet.style.transition = "";
-    sheet.style.transform = "";
+    // if user dragged far, close; otherwise snap back open
     if (startY != null && currentY != null){
       const dy = currentY - startY;
       if (dy > 90) close();
+      else open();
     }
     startY = null;
     currentY = null;
@@ -142,7 +166,15 @@ function initModal(){
   const close = () => {
     backdrop.classList.remove("show");
     modal.classList.remove("show");
+
+    // fallback reset
+    backdrop.style.opacity = "";
+    backdrop.style.pointerEvents = "";
+    modal.style.opacity = "";
+    modal.style.pointerEvents = "";
+    modal.style.transform = "";
   };
+
   const open = (data) => {
     $("#modalTitle").textContent = data.title || "Project";
     $("#modalMeta").textContent = data.meta || "";
@@ -168,7 +200,6 @@ function initModal(){
       actions.appendChild(a);
     }
 
-    // Native share
     const shareBtn = document.createElement("button");
     shareBtn.textContent = "Share";
     shareBtn.addEventListener("click", async () => {
@@ -186,32 +217,21 @@ function initModal(){
 
     backdrop.classList.add("show");
     modal.classList.add("show");
+
+    // fallback force visible
+    backdrop.style.opacity = "1";
+    backdrop.style.pointerEvents = "auto";
+    modal.style.opacity = "1";
+    modal.style.pointerEvents = "auto";
+    modal.style.transform = "translate(-50%, -50%) scale(1)";
   };
 
   closeBtn.addEventListener("click", close);
   backdrop.addEventListener("click", close);
 
-  // expose global helper
   window.__openProjectModal = open;
 }
 
-/* ===== Work page: tap-to-open modal + optional carousel wiring ===== */
-/*function initProjects(){
-  // Works if you add data-* attributes to items (below)
-  $all("[data-project]").forEach(el => {
-    el.addEventListener("click", () => {
-      const data = {
-        title: el.dataset.title,
-        meta: el.dataset.meta,
-        desc: el.dataset.desc,
-        live: el.dataset.live,
-        repo: el.dataset.repo
-      };
-      if (window.__openProjectModal) window.__openProjectModal(data);
-    });
-  });
-}
-*/
 document.addEventListener("DOMContentLoaded", () => {
   wireProfile();
   setActiveNav();
